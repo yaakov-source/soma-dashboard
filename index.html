@@ -6,59 +6,123 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#08080b" />
   <title>SOMA KPI dashboard · Hai Creative</title>
-  <meta name="description" content="SOMA Regenerative performance dashboard, prepared by Hai Creative." />
+  <meta name="description" content="SOMA Regenerative performance dashboard, Aug 1 to Nov 9 2026, prepared by Hai Creative." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308080b'/%3E%3Cpath d='M8 8h10' stroke='%23fb0001' stroke-width='3'/%3E%3Cpath d='M8 8v16' stroke='%23fb0001' stroke-width='3'/%3E%3Ccircle cx='19' cy='18' r='6' fill='none' stroke='%23a88bff' stroke-width='3'/%3E%3C/svg%3E" />
   <link rel="preload" href="dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body.is-locked > *:not(#gate):not(svg){visibility:hidden}
+    #gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:radial-gradient(120% 80% at 70% 0%,#1a1430 0%,#08080b 60%);font-family:"DM Sans",system-ui,sans-serif;color:#f4efff}
+    body:not(.is-locked) #gate{display:none}
+    #gate form{width:min(380px,100%);padding:32px 28px;border-radius:24px;border:1px solid rgba(168,139,255,.28);background:rgba(20,17,30,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+    #gate .ey{font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#a88bff;margin:0 0 14px}
+    #gate h1{font-size:28px;line-height:1.1;font-weight:500;letter-spacing:-.02em;margin:0 0 22px}
+    #gate label{display:block;font-size:13px;color:#b9b2cc;margin:14px 0 6px}
+    #gate input{width:100%;box-sizing:border-box;height:46px;padding:0 16px;border-radius:999px;border:1px solid rgba(244,239,255,.16);background:#0f0d16;color:#f4efff;font:inherit;font-size:16px;outline:none}
+    #gate input:focus{border-color:#a88bff;box-shadow:0 0 0 3px rgba(168,139,255,.22)}
+    #gate button{margin-top:22px;width:100%;height:48px;border:0;border-radius:999px;background:#fb0001;color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+    #gate button[disabled]{opacity:.6;cursor:progress}
+    #gate .err{min-height:20px;margin:12px 0 0;font-size:13px;color:#ff8a8b}
+  </style>
 </head>
-<body id="top">
-  <a class="skip" href="#main">Skip to content</a>
+<body id="top" class="is-locked">
+  <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h">
+    <form autocomplete="on">
+      <p class="ey">SOMA &middot; KPI dashboard</p>
+      <h1 id="gate-h">Sign in to view</h1>
+      <label for="gate-u">Username</label>
+      <input id="gate-u" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+      <label for="gate-p">Password</label>
+      <input id="gate-p" name="password" type="password" autocomplete="current-password" required />
+      <button type="submit">View dashboard</button>
+      <p class="err" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+  <a class="skip" href="#main" data-scroll>Skip to content</a>
 
-  <!-- shared SVG defs: outline gradient + hatch patterns for month-to-date bars -->
+  <!-- shared SVG defs: outline gradient + hatch patterns -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="g-outline" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#a88bff" /><stop offset=".6" stop-color="#c35eae" /><stop offset="1" stop-color="#fb0001" />
       </linearGradient>
-      <linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#a88bff" stop-opacity=".28" /><stop offset="1" stop-color="#a88bff" stop-opacity="0" />
-      </linearGradient>
-      <linearGradient id="g-funnel" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#3b2f79" /><stop offset="1" stop-color="#3b2f79" stop-opacity=".35" />
-      </linearGradient>
-      <pattern id="p-hatch-meta" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <rect width="6" height="6" fill="#a88bff" fill-opacity=".35" /><rect width="2.4" height="6" fill="#a88bff" />
+      <pattern id="p-na" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="7" height="7" fill="#141119" /><rect width="1.6" height="7" fill="#4a3c5e" />
       </pattern>
-      <pattern id="p-hatch-google" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <rect width="6" height="6" fill="#fb0001" fill-opacity=".35" /><rect width="2.4" height="6" fill="#fb0001" />
+      <pattern id="p-unver" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6" height="6" fill="#ff8a8b" fill-opacity=".22" /><rect width="2.2" height="6" fill="#ff8a8b" />
+      </pattern>
+      <pattern id="p-rule" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+        <rect width="6" height="6" fill="#fb0001" fill-opacity=".25" /><rect width="2" height="6" fill="#fb0001" />
+      </pattern>
+      <pattern id="p-stamp" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6" height="6" fill="#a88bff" fill-opacity=".12" /><rect width="1.6" height="6" fill="#a88bff" fill-opacity=".8" />
       </pattern>
     </defs>
   </svg>
 
   <header class="bar">
     <div class="bar__in">
-      <a class="lockup" href="#top" aria-label="Hai Creative, SOMA dashboard, back to top">
+      <a class="lockup" href="#top" data-scroll aria-label="Hai Creative and SOMA Regenerative, KPI dashboard, back to top">
         <span class="wordmark" role="img" aria-label="Hai Creative"></span>
         <span class="lockup__rule" aria-hidden="true"></span>
-        <span class="lockup__client"><small>KPI dashboard</small><b>SOMA</b></span>
+        <span class="lockup__client"><img src="soma-white.png" alt="SOMA" width="600" height="115" /><small>KPI dashboard</small></span>
       </a>
       <nav aria-label="Sections">
-        <a href="#kpis">Scorecard</a>
-        <a href="#channels">Channels</a>
-        <a href="#funnel">Funnel</a>
-        <a href="#week">This week</a>
+        <a href="#kpis" data-scroll>Scorecard</a>
+        <a href="#channels" data-scroll>Channels</a>
+        <a href="#cost" data-scroll>Cost &amp; return</a>
+        <a href="#leads" data-scroll>Leads</a>
+        <a href="#funnel" data-scroll>Funnel</a>
+        <a href="#conditions" data-scroll>Conditions</a>
+        <a href="#website" data-scroll>Website</a>
+        <a href="#notes" data-scroll>Notes</a>
       </nav>
-      <a class="pill pill--red" href="#plan">Game plan</a>
+      <a class="pill pill--red" href="#plan" data-scroll>Game plan</a>
+    </div>
+    <div class="filter" id="filter" role="region" aria-label="Period filter">
+      <div class="filter__in">
+        <span class="label filter__lab" id="periodLab">Period</span>
+        <div class="seg" role="group" aria-labelledby="periodLab" id="periodSeg"></div>
+        <button class="seg__more" type="button" id="rangeToggle" aria-expanded="false" aria-controls="rangeBox">Range</button>
+        <div class="range" id="rangeBox">
+          <label><span class="label">From</span><select id="rangeFrom" aria-label="From month"></select></label>
+          <label><span class="label">To</span><select id="rangeTo" aria-label="To month"></select></label>
+        </div>
+        <p class="filter__now" aria-live="polite"><span id="periodNow">Aug 1 &ndash; Nov 9, 2026</span></p>
+      </div>
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
-      <svg class="hero__grid" id="heroGrid" aria-hidden="true" focusable="false"></svg>
+      <div class="hero__card glass hai-glass" id="heroCard" data-hai-rim="paused">
+        <div class="hero__art" id="heroArt" aria-hidden="true">
+          <img class="hero__poster" src="hero/poster.png" alt="" width="1280" height="760" decoding="async" />
+        </div>
+        <div class="hero__copy">
+          <p class="label hero__eyebrow">SOMA Regenerative &middot; Performance</p>
+          <h1 id="hero-title"><span>SOMA, in numbers.</span><br /><span class="grad" id="heroPeriod">Aug 1 &ndash; Nov 9.</span></h1>
+          <p class="hero__meta"><span>Corrected platform data (v2), pulled Nov 10, 2026</span><span>Prepared by Hai Creative</span><span id="heroPartial">Nov is 1&ndash;9 only</span></p>
+        </div>
+        <div class="hero__pan" id="heroPan" tabindex="0" role="region" aria-label="Diagram of SOMA's data sources. Scroll sideways to pan.">
+          <img src="hero/poster.png" alt="Diagram: paid ads (Meta, Facebook, Instagram, Google Ads) and organic sources (Google search, website, call-ins, referrals) flow into GoHighLevel, are measured in GA4, Google Ads, Meta and HighLevel, and move through the funnel to SOMA." width="1280" height="760" />
+        </div>
+        <p class="hero__pan-hint label" aria-hidden="true">Swipe to pan the diagram</p>
+        <button class="motion" type="button" id="heroMotion" aria-pressed="false" hidden>
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1" /><rect x="9.5" y="3" width="3" height="10" rx="1" /></svg>
+          <span>Pause motion</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="sources" aria-labelledby="sources-title">
       <div class="wrap">
-        <p class="label" data-bind="eyebrow">SOMA Regenerative &middot; Performance</p>
-        <h1 id="hero-title"><span data-bind="h1a">SOMA, in numbers.</span><br /><span class="grad" data-bind="h1b">Aug 1 &ndash; Nov 9.</span></h1>
-        <p class="hero__meta"><span data-bind="period">Aug 1 &ndash; Nov 9, 2026</span><span data-bind="prepared">Prepared by Hai Creative</span><span data-bind="preparedOn">Nov 10, 2026</span></p>
+        <div class="head head--small">
+          <div><p class="label">Sources</p><h2 id="sources-title">Where each number <span class="accent">comes from.</span></h2></div>
+          <p>Every tile and chart carries the marks of the systems behind it, its basis and its coverage. Grey hatching means not reported or not tracked, never zero.</p>
+        </div>
+        <ul class="sources" id="sourceList"></ul>
       </div>
     </section>
 
@@ -66,7 +130,7 @@
       <div class="wrap">
         <div class="head">
           <div><p class="label">Scorecard</p><h2 id="kpis-title">Spend, leads, <span class="accent">patients.</span></h2></div>
-          <p>Whole period. Totals are computed from the platform data.</p>
+          <p>Follows the period filter, except return on ad spend and open pipeline, which are fixed views. Google figures use the v2 attribution rules.</p>
         </div>
         <div class="kpis" id="kpiGrid"></div>
       </div>
@@ -75,59 +139,60 @@
     <section class="section" id="channels" aria-labelledby="channels-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Channels</p><h2 id="channels-title">Meta and Google, <span class="accent">month by month.</span></h2></div>
-          <p>November is month to date, shown hatched.</p>
+          <div><p class="label">Paid channels</p><h2 id="channels-title">Meta and Google, <span class="accent">side by side.</span></h2></div>
+          <p>Cost per lead divides each platform&rsquo;s spend by the leads GoHighLevel credits to it. The platforms&rsquo; own counts sit alongside for reference.</p>
         </div>
-        <div class="charts">
-          <figure class="card chart chart--7" data-chart="spendLeads">
-            <div class="chart__top"><div class="chart__title"><p class="label">Spend vs leads</p><h3>Monthly, by channel</h3></div>
-              <div class="legend"><span style="color:var(--c-meta)"><i></i>Meta spend</span><span style="color:var(--c-google)"><i></i>Google spend</span><span style="color:var(--c-meta)"><i class="ln"></i>Meta leads</span><span style="color:var(--c-google)"><i class="ln"></i>Google leads</span></div></div>
-            <div class="plot"></div>
-            <figcaption class="chart__note">Bars: spend (left axis). Lines: leads (right axis).</figcaption>
-          </figure>
-          <figure class="card chart chart--5" data-chart="split">
-            <div class="chart__top"><div class="chart__title"><p class="label">Channel split</p><h3>Share of spend and leads</h3></div>
-              <div class="legend"><span style="color:var(--c-meta)"><i></i>Meta</span><span style="color:var(--c-google)"><i></i>Google</span></div></div>
-            <div class="plot"></div>
-            <figcaption class="chart__note">Outer ring: spend. Inner ring: leads.</figcaption>
-          </figure>
-          <figure class="card chart chart--12" data-chart="cpl">
-            <div class="chart__top"><div class="chart__title"><p class="label">Cost per lead</p><h3>CPL trend</h3></div>
-              <div class="legend"><span style="color:var(--c-total)"><i class="ln"></i>Blended</span><span style="color:var(--c-meta)"><i class="ln"></i>Meta</span><span style="color:var(--c-google)"><i class="ln"></i>Google</span></div></div>
-            <div class="plot"></div>
-            <figcaption class="chart__note">Spend divided by leads, per month.</figcaption>
-          </figure>
+        <div class="charts" id="channelCharts"></div>
+      </div>
+    </section>
+
+    <section class="section" id="cost" aria-labelledby="cost-title">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label">Cost &amp; return</p><h2 id="cost-title">What a lead costs, <span class="accent">and what it returns.</span></h2></div>
+          <p>Cost per lead by month follows the period. Cost per qualified lead and return on ad spend are fixed views over the windows labelled on each card.</p>
         </div>
+        <div class="charts" id="costCharts"></div>
+      </div>
+    </section>
+
+    <section class="section" id="leads" aria-labelledby="leads-title">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label">Leads &middot; GoHighLevel</p><h2 id="leads-title">Where leads came from, <span class="accent">and the cross-check.</span></h2></div>
+          <p>GoHighLevel is the lead count of record. The cross-check sets it against what Meta and Google Ads report for the same months.</p>
+        </div>
+        <div class="charts" id="leadCharts"></div>
       </div>
     </section>
 
     <section class="section" id="funnel" aria-labelledby="funnel-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">GoHighLevel</p><h2 id="funnel-title">From lead <span class="accent">to patient.</span></h2></div>
-          <p>Each stage with its step conversion.</p>
+          <div><p class="label">Funnel &middot; GoHighLevel</p><h2 id="funnel-title">From lead <span class="accent">to patient.</span></h2></div>
+          <p>Leads grouped by the month they arrived, each at its stage on Nov 10. Newer months have had less time to move.</p>
         </div>
-        <div class="charts">
-          <figure class="card chart chart--12" data-chart="funnel">
-            <div class="chart__top"><div class="chart__title"><p class="label">Lead funnel</p><h3>Leads, contacted, qualified, booked, closed</h3></div></div>
-            <div class="plot"></div>
-            <figcaption class="chart__note" id="funnelNote">Whole period.</figcaption>
-          </figure>
-          <figure class="card chart chart--6" data-chart="topAds">
-            <div class="chart__top"><div class="chart__title"><p class="label">Top ads</p><h3>By leads</h3></div></div>
-            <div class="plot plot--list"></div>
-            <figcaption class="chart__note">Cost per lead on the right.</figcaption>
-          </figure>
-          <figure class="card chart chart--6" data-chart="topCampaigns">
-            <div class="chart__top"><div class="chart__title"><p class="label">Top campaigns</p><h3>By leads</h3></div></div>
-            <div class="plot plot--list"></div>
-            <figcaption class="chart__note">Cost per lead on the right.</figcaption>
-          </figure>
-          <figure class="card chart chart--12" data-chart="ga4">
-            <div class="chart__top"><div class="chart__title"><p class="label">Website · GA4</p><h3>Site traffic and conversions</h3></div></div>
-            <div class="ga4" id="ga4"></div>
-          </figure>
+        <div class="charts" id="funnelCharts"></div>
+      </div>
+    </section>
+
+    <section class="section" id="conditions" aria-labelledby="conditions-title">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label">Conditions &middot; GoHighLevel</p><h2 id="conditions-title">What patients <span class="accent">come in for.</span></h2></div>
+          <p>Condition is the vertical tag on each lead. Tagging coverage rose from 39% in August to 72% in November, so read shifts alongside coverage.</p>
         </div>
+        <div class="charts" id="condCharts"></div>
+      </div>
+    </section>
+
+    <section class="section" id="website" aria-labelledby="website-title">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label">Website &middot; GA4</p><h2 id="website-title">Site traffic, <span class="accent">read with care.</span></h2></div>
+          <p>The site and its tracking changed on Sep 29, so old and new months measure different things.</p>
+        </div>
+        <div class="charts" id="webCharts"></div>
       </div>
     </section>
 
@@ -135,7 +200,7 @@
       <div class="wrap">
         <div class="head">
           <div><p class="label">This week &middot; Nov 10 call</p><h2 id="week-title">What changed <span class="grad">this week.</span></h2></div>
-          <p>Figures from the call. Pipeline is open deals, not revenue.</p>
+          <p>Claims from the Nov 10 call, checked against GoHighLevel where the data allows. Each card says whether it was checked, unverifiable or from the call only. Not period-filtered.</p>
         </div>
         <div class="week" id="weekGrid"></div>
       </div>
@@ -150,21 +215,25 @@
         <ol class="plan" id="planList"></ol>
       </div>
     </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-title">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="label">Data notes</p><h2 id="notes-title">What each source <span class="accent">can and can&rsquo;t say.</span></h2></div>
+          <p>Definitions and caveats from the Nov 10 platform pulls. Aggregates only; no personal data is stored in this page.</p>
+        </div>
+        <div class="notes" id="notesGrid"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="foot">
     <div class="wrap">
-      <span>Prepared by Hai Creative for SOMA Regenerative &middot; <span data-bind="footDate">Nov 10, 2026</span></span>
-      <span>Values marked &ldquo;Awaiting data&rdquo; fill in when platform exports arrive.</span>
+      <span>Prepared by Hai Creative for SOMA Regenerative &middot; Nov 10, 2026</span>
+      <span>Data: Meta Ads, Google Ads, Google Analytics 4, GoHighLevel. Aug 1 &ndash; Nov 9, 2026. Attribution rules v2.</span>
     </div>
   </footer>
-
-  <button class="motion" type="button" id="motionToggle" aria-pressed="false">
-    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1" /><rect x="9.5" y="3" width="3" height="10" rx="1" /></svg>
-    <span>Pause motion</span>
-  </button>
-
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.enc.js"></script>
+  <script src="gate.js"></script>
 </body>
 </html>
