@@ -102,6 +102,12 @@
   bind('prepared', meta.preparedBy ? 'Prepared by ' + meta.preparedBy : null);
   bind('preparedOn', isoLabel(meta.preparedOn, true));
   bind('footDate', isoLabel(meta.preparedOn, true));
+  if (meta.placeholder) {
+    var pb = document.createElement('div'); pb.className = 'phbanner'; pb.setAttribute('role', 'note');
+    pb.innerHTML = '<span class="chip" data-s="unconfirmed">Placeholder</span><span>Sample numbers for layout only. Real figures replace these when the channel exports land.</span>';
+    var hdr = document.querySelector('header.bar'); if (hdr && hdr.parentNode) hdr.parentNode.insertBefore(pb, hdr.nextSibling);
+    document.documentElement.setAttribute('data-placeholder', '');
+  }
 
   /* ---------------- KPI scorecards ---------------- */
   function countSpan(v, f) { return '<span class="num" data-count="' + v + '" data-fmt="' + f + '">' + fmt[f](v) + '</span>'; }

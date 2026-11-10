@@ -49,28 +49,21 @@ window.SOMA_DATA = {
     periodEnd: "2026-11-09",
     periodLabel: "Aug 1 \u2013 Nov 9, 2026",
     preparedBy: "Hai Creative",
-    preparedOn: "2026-11-10"
+    preparedOn: "2026-11-10",
+    placeholder: true   /* PLACEHOLDER: set false and replace numbers when Daniel's sheet lands */
   },
 
-  /* Platform exports pending (Meta Ads Manager, Google Ads). */
+  /* PLACEHOLDER NUMBERS (invented, layout only). Replace from Daniel's channel sheet. */
   months: [
-    { key: "2026-08", label: "Aug", partial: false,
-      meta:   { spend: null, leads: null, impressions: null, clicks: null },
-      google: { spend: null, leads: null, impressions: null, clicks: null } },
-    { key: "2026-09", label: "Sep", partial: false,
-      meta:   { spend: null, leads: null, impressions: null, clicks: null },
-      google: { spend: null, leads: null, impressions: null, clicks: null } },
-    { key: "2026-10", label: "Oct", partial: false,
-      meta:   { spend: null, leads: null, impressions: null, clicks: null },
-      google: { spend: null, leads: null, impressions: null, clicks: null } },
-    { key: "2026-11", label: "Nov", partial: true,
-      meta:   { spend: null, leads: null, impressions: null, clicks: null },
-      google: { spend: null, leads: null, impressions: null, clicks: null } }
-  ],
+      { key: "2026-08", label: "Aug", partial: false, meta: { spend: 9200, leads: 210, impressions: 410000, clicks: 6100 }, google: { spend: 6100, leads: 88, impressions: 98000, clicks: 3400 } },
+      { key: "2026-09", label: "Sep", partial: false, meta: { spend: 10400, leads: 255, impressions: 450000, clicks: 6900 }, google: { spend: 6900, leads: 104, impressions: 105000, clicks: 3900 } },
+      { key: "2026-10", label: "Oct", partial: false, meta: { spend: 11800, leads: 320, impressions: 500000, clicks: 7600 }, google: { spend: 7400, leads: 131, impressions: 112000, clicks: 4200 } },
+      { key: "2026-11", label: "Nov", partial: true, meta: { spend: 3500, leads: 140, impressions: 150000, clicks: 2300 }, google: { spend: 2300, leads: 36, impressions: 31000, clicks: 1200 } }
+    ],
 
   ghl: {
-    funnel: { leads: null, contacted: null, qualified: null, booked: null, closed: null },
-    revenue: null,
+    funnel: { leads: 1284, contacted: 1010, qualified: 402, booked: 151, closed: 38 },
+    revenue: 412000,
     openPipeline: {
       value: 113000,
       approx: true,
@@ -80,10 +73,21 @@ window.SOMA_DATA = {
     }
   },
 
-  ga4: { sessions: null, users: null, conversions: null, conversionRate: null },
+  ga4: { sessions: 48210, users: 36120, conversions: 1302, conversionRate: 0.027 },
 
-  topAds: null,
-  topCampaigns: null,
+  topAds: [
+      { name: "Stem cell knee, video A", channel: "meta", spend: 6200, leads: 240 },
+      { name: "Doctor testimonial, carousel", channel: "meta", spend: 5100, leads: 188 },
+      { name: "Search: stem cell therapy near me", channel: "google", spend: 4800, leads: 121 },
+      { name: "Back pain, static B", channel: "meta", spend: 3900, leads: 117 },
+      { name: "Search: regenerative medicine clinic", channel: "google", spend: 3500, leads: 84 }
+    ],
+  topCampaigns: [
+      { name: "Meta | Leads | Joint pain | US", channel: "meta", spend: 18400, leads: 560 },
+      { name: "Google | Search | Brand + generic", channel: "google", spend: 14200, leads: 260 },
+      { name: "Meta | Retargeting | Site visitors", channel: "meta", spend: 9600, leads: 240 },
+      { name: "Google | PMax | Consult", channel: "google", spend: 8500, leads: 99 }
+    ],
 
   /* From the Nov 10, 2026 call. */
   thisWeek: [

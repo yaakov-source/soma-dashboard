@@ -241,3 +241,6 @@ html[data-motion="paused"] .outline .o-run, html[data-hidden] .outline .o-run, .
 @media (forced-colors: active) { .grad { -webkit-text-fill-color: CanvasText; background: none; } .wordmark { background: CanvasText; } }
 @media (max-width: 420px) { [data-chart="split"] .ga4 b { font-size: 20px; white-space: nowrap; } .hero__meta { font-size: 14px; } }
 .plot .val { paint-order: stroke; stroke: #0e0b13; stroke-width: 3px; stroke-linejoin: round; }
+
+/* Placeholder-data banner */
+.phbanner { position: relative; z-index: 5; display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; padding: 10px 20px; border-bottom: 1px dashed #5a4630; background: rgba(233,185,122,.06); color: #e9b97a; font: 500 13px/1.45 var(--sans, "DM Sans Variable", sans-serif); text-align: center; }
