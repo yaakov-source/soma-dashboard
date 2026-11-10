@@ -54,6 +54,10 @@
       <linearGradient id="gr-brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a88bff" /><stop offset=".55" stop-color="#c35eae" /><stop offset="1" stop-color="#fb0001" /></linearGradient>
       <linearGradient id="gr-meta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cbbcff" /><stop offset=".6" stop-color="#a88bff" /><stop offset="1" stop-color="#8f5fd8" /></linearGradient>
       <linearGradient id="gr-google" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f61" /><stop offset=".55" stop-color="#fb0001" /><stop offset="1" stop-color="#b3125e" /></linearGradient>
+      <!-- chart paints: the HAI ramp, violet #a88bff -> magenta #c35eae -> red #fb0001, bottom to top -->
+      <linearGradient id="gb-brand" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#a88bff" /><stop offset=".55" stop-color="#c35eae" /><stop offset="1" stop-color="#fb0001" /></linearGradient>
+      <linearGradient id="gb-meta" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#a88bff" /><stop offset="1" stop-color="#c06fc4" /></linearGradient>
+      <linearGradient id="gb-google" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c8478f" /><stop offset="1" stop-color="#fb0001" /></linearGradient>
       <pattern id="p-na" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
         <rect width="7" height="7" fill="#141119" /><rect width="1.6" height="7" fill="#4a3c5e" />
       </pattern>
@@ -123,13 +127,14 @@
       </div>
     </section>
 
-    <section class="section section--tight" id="sources" aria-labelledby="sources-title">
+    <section class="section section--strip" id="sources" aria-labelledby="sources-title">
       <div class="wrap">
-        <div class="head head--small">
-          <div><p class="label">Sources</p><h2 id="sources-title">Where each number <span class="accent">comes from.</span></h2></div>
-          <p>Every tile and chart carries the marks of the systems behind it, its basis and its coverage. Grey hatching means not reported or not tracked, never zero.</p>
+        <div class="strip">
+          <h2 id="sources-title" class="strip__h">Before you read</h2>
+          <ul class="strip__marks" id="sourceMarks" aria-label="Platforms in this dashboard"></ul>
+          <p class="strip__key"><i class="sw sw--na" aria-hidden="true"></i>Hatched means not reported or not tracked, never zero.</p>
+          <details class="acc strip__acc" data-acc="sources"><summary><span>Basis and time zones</span><i class="acc__ic" aria-hidden="true"></i></summary><div class="acc__in"><ul class="sources" id="sourceList"></ul></div></details>
         </div>
-        <ul class="sources" id="sourceList"></ul>
       </div>
     </section>
 
@@ -166,7 +171,7 @@
     <section class="section" id="leads" aria-labelledby="leads-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Leads &middot; GoHighLevel</p><h2 id="leads-title">Where leads came from, <span class="accent">and the cross-check.</span></h2></div>
+          <div><p class="label">Leads</p><h2 id="leads-title">Where leads <span class="accent">came from.</span></h2></div>
           <p>GoHighLevel is the lead count of record. The cross-check sets it against what Meta and Google Ads report for the same months.</p>
         </div>
         <div class="charts" id="leadCharts"></div>
@@ -176,7 +181,7 @@
     <section class="section" id="funnel" aria-labelledby="funnel-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Funnel &middot; GoHighLevel</p><h2 id="funnel-title">From lead <span class="accent">to patient.</span></h2></div>
+          <div><p class="label">Funnel</p><h2 id="funnel-title">From lead <span class="accent">to patient.</span></h2></div>
           <p>Leads grouped by the month they arrived, each at its stage on Nov 10. Newer months have had less time to move.</p>
         </div>
         <div class="charts" id="funnelCharts"></div>
@@ -186,7 +191,7 @@
     <section class="section" id="conditions" aria-labelledby="conditions-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Conditions &middot; GoHighLevel</p><h2 id="conditions-title">What patients <span class="accent">come in for.</span></h2></div>
+          <div><p class="label">Conditions</p><h2 id="conditions-title">What patients <span class="accent">come in for.</span></h2></div>
           <p>Condition is the vertical tag on each lead. Tagging coverage rose from 39% in August to 72% in November, so read shifts alongside coverage.</p>
         </div>
         <div class="charts" id="condCharts"></div>
@@ -196,7 +201,7 @@
     <section class="section" id="website" aria-labelledby="website-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Website &middot; GA4</p><h2 id="website-title">Site traffic, <span class="accent">read with care.</span></h2></div>
+          <div><p class="label">Website</p><h2 id="website-title">Site traffic, <span class="accent">read with care.</span></h2></div>
           <p>The site and its tracking changed on Sep 29, so old and new months measure different things.</p>
         </div>
         <div class="charts" id="webCharts"></div>
@@ -240,7 +245,7 @@
       <span>Data: Meta Ads, Google Ads, Google Analytics 4, GoHighLevel. Aug 1 &ndash; Nov 9, 2026.</span>
     </div>
   </footer>
-  <script src="data.enc.js?v=mwb8yild"></script>
-  <script src="gate.js?v=mwb8yild"></script>
+  <script src="data.enc.js?v=mwba7ayt"></script>
+  <script src="gate.js?v=mwba7ayt"></script>
 </body>
 </html>
