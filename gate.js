@@ -22,7 +22,7 @@
       .then(function (k) { return S.decrypt({ name: 'AES-GCM', iv: ub(E.iv) }, k, ub(E.ct)); })
       .then(function (pt) {
         document.body.classList.remove('is-locked');
-        return run(new TextDecoder().decode(pt));
+        (0, eval)(new TextDecoder().decode(pt));
       })
       .then(function () { try { sessionStorage.setItem(KEY, bu(K)); } catch (e) {} });
   }
@@ -39,11 +39,10 @@
   else setTimeout(function () { document.getElementById('gate-u').focus(); }, 50);
   form.addEventListener('submit', function (ev) {
     ev.preventDefault(); err.textContent = ''; btn.disabled = true; btn.textContent = 'Checking…';
-    var u = document.getElementById('gate-u').value.trim().toLowerCase(), p = document.getElementById('gate-p').value;
-    unwrap(u, p).then(open).catch(function () {
-      btn.disabled = false; btn.textContent = 'View dashboard';
-      err.textContent = 'That username and password don\u2019t match.';
-      document.getElementById('gate-p').select();
-    });
+    var u = document.getElementById('gate-u').value.trim().toLowerCase(), p = document.getElementById('gate-p').value.trim().toUpperCase();
+    var reset = function (m) { btn.disabled = false; btn.textContent = 'View dashboard'; err.textContent = m; };
+    unwrap(u, p).then(function (K) {
+      return open(K).catch(function (e) { document.body.classList.add('is-locked'); reset('Signed in, but the dashboard failed to load (' + (e && (e.name || e.message) || 'error') + '). Refresh and try again.'); });
+    }, function () { reset('That username and password don\u2019t match.'); document.getElementById('gate-p').select(); });
   });
 })();

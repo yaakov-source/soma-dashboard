@@ -22,20 +22,25 @@
     #gate input:focus{border-color:#a88bff;box-shadow:0 0 0 3px rgba(168,139,255,.22)}
     #gate button{margin-top:22px;width:100%;height:48px;border:0;border-radius:999px;background:#fb0001;color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
     #gate button[disabled]{opacity:.6;cursor:progress}
+    #gate .brand img{display:block;width:150px;height:auto;margin:0 0 22px}
+    #gate .by{display:flex;align-items:center;gap:10px;margin:8px 0 0;padding-top:18px;border-top:1px solid rgba(244,239,255,.08);font-size:12px;color:#8f88a3}
+    #gate .hai{display:inline-block;width:96px;height:32px;background:linear-gradient(90deg,#a88bff 18%,#c35eae);-webkit-mask:url(hai-wordmark-mask.png) left center/contain no-repeat;mask:url(hai-wordmark-mask.png) left center/contain no-repeat}
     #gate .err{min-height:20px;margin:12px 0 0;font-size:13px;color:#ff8a8b}
   </style>
 </head>
 <body id="top" class="is-locked">
   <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h">
     <form autocomplete="on">
-      <p class="ey">SOMA &middot; KPI dashboard</p>
+      <div class="brand"><img src="soma-white.png" alt="SOMA Regenerative" width="600" height="115" /></div>
+      <p class="ey">KPI dashboard</p>
       <h1 id="gate-h">Sign in to view</h1>
       <label for="gate-u">Username</label>
-      <input id="gate-u" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+      <input id="gate-u" name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required />
       <label for="gate-p">Password</label>
-      <input id="gate-p" name="password" type="password" autocomplete="current-password" required />
+      <input id="gate-p" name="password" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" required />
       <button type="submit">View dashboard</button>
       <p class="err" role="alert" aria-live="polite"></p>
+      <p class="by">Prepared by <span class="hai" role="img" aria-label="Hai Creative"></span></p>
     </form>
   </div>
   <a class="skip" href="#main" data-scroll>Skip to content</a>
@@ -233,7 +238,7 @@
       <span>Data: Meta Ads, Google Ads, Google Analytics 4, GoHighLevel. Aug 1 &ndash; Nov 9, 2026. Attribution rules v2.</span>
     </div>
   </footer>
-  <script src="data.enc.js"></script>
-  <script src="gate.js"></script>
+  <script src="data.enc.js?v=mwb7wscv"></script>
+  <script src="gate.js?v=mwb7wscv"></script>
 </body>
 </html>
