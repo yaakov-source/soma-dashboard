@@ -1,0 +1,10 @@
+SOMA hero network scene (decorative)
+
+Derived from the LiveKit marketing site's isometric NetworkDiagram (captured factory load(23785) and its
+graphics/icon factories, kept unchanged in Hai Creative's UI/UX library). SOMA relabelling, brand marks,
+palette and lifecycle are Hai Creative adapters. No open-source license was established for LiveKit's
+marketing code or artwork; attribution and provenance are kept with the source pack.
+Brand marks: Meta, Facebook, Instagram, Google, Google Ads, Google Analytics (Simple Icons, CC0 SVG paths;
+trademarks of their owners); HighLevel mark from gohighlevel.com; SOMA mark supplied by SOMA.
+DM Sans: SIL Open Font License (dm-sans-OFL-LICENSE.txt).
+The diagram is a schematic of data sources, not a live connection or patient data.
