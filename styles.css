@@ -115,10 +115,10 @@ html { scroll-padding-top: 132px; }
 }
 @media (max-width: 380px) { .seg button, .seg__more { padding-inline: 8px; font-size: 12.5px; min-height: 32px; } .seg { gap: 2px; } }
 
-/* ---------- hero: HAI glass card + SOMA source network (library LiveKit NetworkDiagram, retrofitted) ---------- */
+/* ---------- hero: HAI glass card + native spend-to-patients flow diagram ---------- */
 @property --hai-rim-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.hero { padding: clamp(12px, 1.4vw, 26px) clamp(12px, 1.4vw, 24px) 0; background: #000; }
-.hero__card { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(560px, 46vw, 700px); border-radius: clamp(22px, 2vw, 32px);
+.hero { padding: clamp(14px, 2vw, 28px) 0 0; }
+.hero__card { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); border-radius: clamp(22px, 2vw, 32px);
   background: radial-gradient(95% 50% at 5% 0, rgba(224,215,248,.075), transparent 70%), linear-gradient(145deg, rgba(45,36,61,.26), rgba(20,15,28,.30) 48%, rgba(10,8,13,.42));
   border: 1px solid rgba(244,239,255,.14); border-color: rgba(244,239,255,.33) rgba(244,239,255,.14) rgba(244,239,255,.14) rgba(244,239,255,.2);
   box-shadow: 0 18px 44px rgba(0,0,0,.38), 0 3px 8px rgba(0,0,0,.28), inset 0 2px 2px rgba(255,239,255,.08), inset 1px 0 1px rgba(232,208,255,.07), inset 0 -1px 1px rgba(221,188,255,.07), inset 0 -10px 24px rgba(5,2,10,.12); }
@@ -135,47 +135,40 @@ html { scroll-padding-top: 132px; }
 .hai-glass::before { opacity: .86; }
 .hai-glass::after { opacity: .23; padding: 3px; filter: blur(4px); }
 @keyframes hai-rim-orbit { to { --hai-rim-angle: 360deg; } }
-.hero__art { position: absolute; inset: 0 0 0 26%; z-index: 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 97%, transparent), linear-gradient(to bottom, transparent 2%, #000 16%, #000 84%, transparent 99%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 97%, transparent), linear-gradient(to bottom, transparent 2%, #000 16%, #000 84%, transparent 99%);
-  -webkit-mask-composite: source-in; mask-composite: intersect; }
-.hero__art::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 30% 45%, rgb(168 139 255 / .09) 0%, transparent 45%), radial-gradient(ellipse at 84% 64%, rgb(251 0 1 / .06) 0%, transparent 40%); }
-.hero__poster, .hero__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: contain; object-position: 50% 50%; background: transparent; transform: scale(1.12); transform-origin: 55% 50%; }
-.hero__frame { opacity: 0; transition: opacity .42s cubic-bezier(.5, 1, .89, 1); }
-.hero__art.is-live .hero__frame { opacity: 1; }
-.hero__art.is-live .hero__poster { visibility: hidden; transition: visibility 0s .42s; }
-.hero__copy { position: relative; z-index: 2; max-width: 780px; padding: clamp(40px, 5vw, 76px) clamp(24px, 4vw, 64px) 120px; }
-.hero__copy::before { content: ""; position: absolute; inset: -10% -30% -10% -20%; z-index: -1; pointer-events: none; background: radial-gradient(closest-side, rgba(6,4,9,.86), rgba(6,4,9,.5) 62%, transparent); }
+.hero__copy { position: relative; z-index: 2; min-width: 0; padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 56px) 0; }
 .hero__eyebrow { color: var(--ink); font-size: 10px; letter-spacing: .17em; }
-.hero h1 { margin-top: clamp(20px, 2.3vw, 30px); color: var(--ink); font: 450 clamp(46px, 5.4vw, 88px)/.92 var(--sans); letter-spacing: -.07em; }
-.hero h1 span { display: inline-block; white-space: nowrap; font-weight: 450; padding-bottom: .08em; }
+.hero h1 { margin-top: clamp(16px, 2vw, 26px); color: var(--ink); font: 450 clamp(38px, 5vw, 80px)/.95 var(--sans); letter-spacing: -.06em; }
+.hero h1 span { display: inline-block; font-weight: 450; padding-bottom: .06em; }
 .hero h1 .grad { font-weight: 500; }
-.hero__meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: clamp(20px, 2.2vw, 30px); color: var(--body); font-size: 15px; }
+.hero__meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: clamp(14px, 2vw, 24px); color: var(--body); font-size: 14px; }
 .hero__meta span { display: inline-flex; align-items: center; gap: 8px; }
 .hero__meta span + span::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--purple); }
-.hero__pan, .hero__pan-hint { display: none; }
-.motion { position: absolute; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 24px); z-index: 4; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid rgb(244 239 255 / .18); border-radius: 999px; background: rgb(8 8 11 / .78); color: var(--body); font-size: 12.5px; font-weight: 500; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.motion:hover { border-color: var(--orange); background: var(--purple-deep); color: var(--ink); }
-.motion svg { width: 14px; height: 14px; }
-.motion[aria-pressed="true"] svg { transform: rotate(90deg); }
-.motion[hidden] { display: none; }
-@media (max-width: 1100px) { .hero__art { inset: 18% 0 0 0; } .hero__copy { max-width: 560px; } .hero__card { min-height: 680px; } }
-/* phones: copy on top, then a wide pannable poster stage (library guidance: pan, don't shrink labels) */
-@media (max-width: 760px) {
-  .hero__card { min-height: 0; }
-  .hero__art { display: none; }
-  .hero__copy { max-width: none; padding: 34px 22px 8px; }
-  .hero__copy::before { display: none; }
-  .hero h1 { font-size: clamp(40px, 11.6vw, 72px); }
-  .hero h1 span { white-space: normal; }
-  .hero__meta { font-size: 14px; }
-  .hero__pan { display: block; position: relative; z-index: 1; margin: 6px 0 0; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .hero__pan::-webkit-scrollbar { display: none; }
-  .hero__pan img { display: block; width: 900px; max-width: none; height: auto; }
-  .hero__pan:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
-  .hero__pan-hint { display: block; padding: 0 22px 20px; text-align: center; }
+.hero__flow { position: relative; z-index: 1; min-width: 0; margin: 0; padding: clamp(18px, 2.4vw, 32px) clamp(14px, 3vw, 44px) clamp(18px, 2.4vw, 30px); }
+.flow { position: relative; width: 100%; max-width: 100%; overflow: hidden; }
+.flow svg { display: block; width: 100%; height: auto; max-width: 100%; }
+.flow__cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-top: 10px; padding-right: 150px; color: var(--muted); font-size: 12px; }
+.flow__cap .label { font-size: 10px; }
+@media (min-width: 1100px) {
+  .hero__card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; }
+  .hero__copy { padding-bottom: clamp(40px, 4vw, 64px); align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  .hero__flow { padding-left: 0; }
 }
+@media (max-width: 600px) { .flow__cap { padding-right: 0; } .hero__flow { padding-bottom: 72px; } .hero__meta { font-size: 13px; } }
+/* flow diagram parts (SVG, viewBox units) */
+.fl-grid { stroke: rgba(168,139,255,.07); stroke-width: 1; }
+.fl-base { fill: #0c0a11; stroke: rgba(244,239,255,.08); }
+.fl-tile { fill: url(#fl-glass); stroke: url(#g-outline); stroke-width: 1; }
+.fl-tile--hi { stroke-width: 1.4; }
+.fl-lab { fill: var(--muted); font: 500 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.fl-val { fill: var(--ink); font: 500 23px var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.fl-val--grad { fill: url(#gr-brand); }
+.fl-sub { fill: var(--body); font: 400 11.5px var(--sans); }
+.fl-wire { fill: none; stroke: #2c2338; stroke-linecap: round; }
+.fl-run { fill: none; stroke-linecap: round; stroke-dasharray: 2 12; opacity: .95; animation: flrun 1.6s linear infinite; }
+.fl-dot { filter: drop-shadow(0 0 4px currentColor); }
+@keyframes flrun { to { stroke-dashoffset: -28; } }
+.flow.is-paused .fl-run { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .fl-run { animation: none; } .fl-dot { display: none; } }
 
 /* ---------- sections ---------- */
 .section { position: relative; padding-block: clamp(56px, 7vw, 112px); }
@@ -208,9 +201,10 @@ html { scroll-padding-top: 132px; }
 .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid var(--line); pointer-events: none; }
 .outline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .outline rect { fill: none; }
-.outline .o-draw { stroke: url(#g-outline); stroke-width: 1; stroke-dasharray: 1 1; stroke-dashoffset: 1; opacity: .75; }
+.outline .o-draw { stroke: url(#g-outline); stroke-width: 1; opacity: .75; }
 [data-drawn] > .outline .o-draw { animation: draw 1.4s var(--ease-draw) forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes draw { from { stroke-dashoffset: var(--len, 0); } to { stroke-dashoffset: 0; } }
+[data-settled] > .outline .o-draw { animation: none; stroke-dashoffset: 0 !important; }
 
 /* chips */
 .chip[data-s="na"] { color: var(--muted); border-style: dashed; border-color: var(--line-strong); }
@@ -510,3 +504,21 @@ html { scroll-padding-top: 132px; }
 @media (max-width: 700px) { .note__cols { columns: 1; } }
 .wk__foot .chip { white-space: normal; text-align: left; }
 [data-chart="cpql"] .chart__body, [data-chart="condChannel"] .chart__body { grid-template-rows: none; align-content: start; }
+
+/* ---------- overflow hardening (iOS: SF Mono chips kept on one line forced cards wider than the screen) ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+.chip { white-space: normal; max-width: 100%; text-align: left; overflow-wrap: anywhere; line-height: 1.45; padding-block: 3px; }
+.chip::before { flex: none; }
+.card, .chart__body > *, .valid, .valid__row > *, .chart__top > *, .bars li, .bars__row > *, .coh li, .kpi > * { min-width: 0; max-width: 100%; }
+.valid__kv, .valid__cav, .bars__note, .kpi__sub, .src__basis, .wk__note { overflow-wrap: anywhere; }
+@media (max-width: 600px) { .label { letter-spacing: .1em; } }
+/* hero motion toggle (pill, bottom-right of the hero card) */
+.motion { position: absolute; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 22px); z-index: 4; display: inline-flex; align-items: center; gap: 8px; width: auto; min-height: 44px; padding: 0 16px; border: 1px solid rgb(244 239 255 / .18); border-radius: 999px; background: rgb(8 8 11 / .78); color: var(--body); font-size: 12.5px; font-weight: 500; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.motion:hover { border-color: var(--orange); background: var(--purple-deep); color: var(--ink); }
+.motion:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.motion svg { width: 14px; height: 14px; }
+.motion[aria-pressed="true"] svg { transform: rotate(90deg); }
+.motion[hidden] { display: none; }
+.flow svg[data-layout="wide"] .fl-lab { font-size: 11px; }
+.flow svg[data-layout="wide"] .fl-sub { font-size: 12.5px; }

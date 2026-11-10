@@ -51,6 +51,9 @@
       <linearGradient id="g-outline" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#a88bff" /><stop offset=".6" stop-color="#c35eae" /><stop offset="1" stop-color="#fb0001" />
       </linearGradient>
+      <linearGradient id="gr-brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a88bff" /><stop offset=".55" stop-color="#c35eae" /><stop offset="1" stop-color="#fb0001" /></linearGradient>
+      <linearGradient id="gr-meta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cbbcff" /><stop offset=".6" stop-color="#a88bff" /><stop offset="1" stop-color="#8f5fd8" /></linearGradient>
+      <linearGradient id="gr-google" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f61" /><stop offset=".55" stop-color="#fb0001" /><stop offset="1" stop-color="#b3125e" /></linearGradient>
       <pattern id="p-na" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
         <rect width="7" height="7" fill="#141119" /><rect width="1.6" height="7" fill="#4a3c5e" />
       </pattern>
@@ -101,23 +104,22 @@
 
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__card glass hai-glass" id="heroCard" data-hai-rim="paused">
-        <div class="hero__art" id="heroArt" aria-hidden="true">
-          <img class="hero__poster" src="hero/poster.png" alt="" width="1280" height="760" decoding="async" />
+      <div class="wrap">
+        <div class="hero__card glass hai-glass" id="heroCard" data-hai-rim="paused">
+          <div class="hero__copy">
+            <p class="label hero__eyebrow">SOMA Regenerative &middot; Performance</p>
+            <h1 id="hero-title"><span>SOMA, in numbers.</span> <span class="grad" id="heroPeriod">Aug 1 &ndash; Nov 9.</span></h1>
+            <p class="hero__meta"><span>Data through Nov 9, 2026</span><span>Prepared by Hai Creative</span><span id="heroPartial">Nov is 1&ndash;9 only</span></p>
+          </div>
+          <figure class="hero__flow" id="heroFlow">
+            <div class="flow" id="flowHost" role="img" aria-label="Spend to leads to wins for the selected period"></div>
+            <figcaption class="flow__cap"><span class="label">Spend &rarr; leads &rarr; patients</span><span class="flow__note">Follows the period filter. Won is by close date.</span></figcaption>
+          </figure>
+          <button class="motion" type="button" id="heroMotion" aria-pressed="false" hidden>
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1" /><rect x="9.5" y="3" width="3" height="10" rx="1" /></svg>
+            <span>Pause motion</span>
+          </button>
         </div>
-        <div class="hero__copy">
-          <p class="label hero__eyebrow">SOMA Regenerative &middot; Performance</p>
-          <h1 id="hero-title"><span>SOMA, in numbers.</span><br /><span class="grad" id="heroPeriod">Aug 1 &ndash; Nov 9.</span></h1>
-          <p class="hero__meta"><span>Corrected platform data (v2), pulled Nov 10, 2026</span><span>Prepared by Hai Creative</span><span id="heroPartial">Nov is 1&ndash;9 only</span></p>
-        </div>
-        <div class="hero__pan" id="heroPan" tabindex="0" role="region" aria-label="Diagram of SOMA's data sources. Scroll sideways to pan.">
-          <img src="hero/poster.png" alt="Diagram: paid ads (Meta, Facebook, Instagram, Google Ads) and organic sources (Google search, website, call-ins, referrals) flow into GoHighLevel, are measured in GA4, Google Ads, Meta and HighLevel, and move through the funnel to SOMA." width="1280" height="760" />
-        </div>
-        <p class="hero__pan-hint label" aria-hidden="true">Swipe to pan the diagram</p>
-        <button class="motion" type="button" id="heroMotion" aria-pressed="false" hidden>
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1" /><rect x="9.5" y="3" width="3" height="10" rx="1" /></svg>
-          <span>Pause motion</span>
-        </button>
       </div>
     </section>
 
@@ -135,7 +137,7 @@
       <div class="wrap">
         <div class="head">
           <div><p class="label">Scorecard</p><h2 id="kpis-title">Spend, leads, <span class="accent">patients.</span></h2></div>
-          <p>Follows the period filter, except return on ad spend and open pipeline, which are fixed views. Google figures use the v2 attribution rules.</p>
+          <p>Follows the period filter, except return on ad spend and open pipeline, which are fixed views. Google figures follow the counting rules in the notes.</p>
         </div>
         <div class="kpis" id="kpiGrid"></div>
       </div>
@@ -224,7 +226,7 @@
     <section class="section" id="notes" aria-labelledby="notes-title">
       <div class="wrap">
         <div class="head">
-          <div><p class="label">Data notes</p><h2 id="notes-title">What each source <span class="accent">can and can&rsquo;t say.</span></h2></div>
+          <div><p class="label">Data notes</p><h2 id="notes-title">How to read <span class="accent">the figures.</span></h2></div>
           <p>Definitions and caveats from the Nov 10 platform pulls. Aggregates only; no personal data is stored in this page.</p>
         </div>
         <div class="notes" id="notesGrid"></div>
@@ -235,10 +237,10 @@
   <footer class="foot">
     <div class="wrap">
       <span>Prepared by Hai Creative for SOMA Regenerative &middot; Nov 10, 2026</span>
-      <span>Data: Meta Ads, Google Ads, Google Analytics 4, GoHighLevel. Aug 1 &ndash; Nov 9, 2026. Attribution rules v2.</span>
+      <span>Data: Meta Ads, Google Ads, Google Analytics 4, GoHighLevel. Aug 1 &ndash; Nov 9, 2026.</span>
     </div>
   </footer>
-  <script src="data.enc.js?v=mwb7wscv"></script>
-  <script src="gate.js?v=mwb7wscv"></script>
+  <script src="data.enc.js?v=mwb8yild"></script>
+  <script src="gate.js?v=mwb8yild"></script>
 </body>
 </html>
