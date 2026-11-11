@@ -615,3 +615,4 @@ body.has-voice { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); 
 @media (max-width: 420px) { .vg { right: max(10px, env(safe-area-inset-right, 0px)); bottom: calc(10px + env(safe-area-inset-bottom, 0px)); } .vg__btn { width: 48px; height: 48px; } .vg__panel { padding: 14px; } }
 /* a chart body with a highlight row (ring or sum line) above the plot: the plot row takes the spare height, not the highlight */
 .chart__body:has(> .ring + .plot), .chart__body:has(> .sumline + .plot) { grid-template-rows: auto auto 1fr auto auto; }
+.bars__total{margin-top:6px;padding-top:12px;border-top:1px solid rgba(244,239,255,.12)}
